@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="system" method="upgrade">
+<name>System - AntiCopy</name>
+<author>Galaa</author>
+<creationDate>2011-05-17</creationDate>
+<copyright>Copyright (C) 2011-2013 Galaa</copyright>
+<license>This extension in released under the GNU/GPL License - http://www.gnu.org/copyleft/gpl.html</license>
+<authorEmail>contact@galaa.mn</authorEmail>
+<authorUrl>www.galaa.mn</authorUrl>
+<version>1.8.2</version>
+<description>This plugin restricts framing whole site, printing web page, and copying site contents by disabling the right click, highlight and copy functions using javascript. Copyright (C) 2011-2013 Galaa (http://galaa.mn/)</description>
+<files>
+	<filename plugin="anticopy">anticopy.php</filename>
+</files>
+<languages>
+	<language tag="en-GB">language/en-GB/en-GB.plg_system_anticopy.ini</language>
+</languages>
+<params>
+	<param type="spacer" default="ANTIFRAMING" description="" />
+	<param name="disallow_framing" type="list" default="1" label="FRAMING_LABEL" description="FRAMING_DESC">
+		<option value="0">OPTION_ALLOW</option>
+		<option value="1">OPTION_DISALLOW</option>
+	</param>
+	<param type="spacer" default="RESTRICTIONS" description="" />
+  	<param name="disallow_print" type="list" default="1" label="PRINT_LABEL" description="PRINT_DESC">
+		<option value="0">OPTION_ALLOW</option>
+		<option value="1">OPTION_DISALLOW</option>
+	</param>
+  	<param name="disallow_printscreen" type="list" default="0" label="PRINT_SCREEN_LABEL" description="PRINT_SCREEN_DESC">
+		<option value="0">OPTION_ALLOW</option>
+		<option value="1">OPTION_DISALLOW</option>
+	</param>
+  	<param name="disallow_r_click" type="list" default="1" label="RIGHT_CLICK_LABEL" description="RIGHT_CLICK_DESC">
+		<option value="0">OPTION_ALLOW</option>
+		<option value="1">OPTION_DISALLOW</option>
+		<option value="2">OPTION_DISALLOW_FOR_IMAGES</option>
+	</param>
+	<param name="disallow_copy" type="list" default="1" label="SELECT_COPY_LABEL" description="SELECT_COPY_DESC">
+		<option value="0">OPTION_ALLOW</option>
+		<option value="1">OPTION_DISALLOW</option>
+		<option value="2">OPTION_DISALLOW_EXCEPT_OPERA</option>
+	</param>
+	<param name="show_message" type="list" default="0" label="SHOW_MSG_LABEL" description="SHOW_MSG_DESC">
+		<option value="1">OPTION_YES</option>
+		<option value="0">No</option>
+	</param>
+	<param name="message" type="text" size="50" default="Stop copying the copyrighted material!" label="MSG_LABEL" description="MSG_DESC" />
+	<param type="spacer" default="RESTRICTED_USER_GROUPS" description="" />
+	<param name="utype0" type="radio" default="0" label="GUEST" description="">
+		<option value="1">OPTION_NO</option>
+		<option value="0">OPTION_YES</option>
+	</param>
+	<param name="utype1" type="radio" default="0" label="REGISTERED" description="">
+		<option value="1">OPTION_NO</option>
+		<option value="0">OPTION_YES</option>
+	</param>
+	<param name="utype2" type="radio" default="1" label="AUTHOR" description="">
+		<option value="1">OPTION_NO</option>
+		<option value="0">OPTION_YES</option>
+	</param>
+	<param name="utype3" type="radio" default="1" label="EDITOR" description="">
+		<option value="1">OPTION_NO</option>
+		<option value="0">OPTION_YES</option>
+	</param>
+	<param name="utype4" type="radio" default="1" label="PUBLISHER" description="">
+		<option value="1">OPTION_NO</option>
+		<option value="0">OPTION_YES</option>
+	</param>
+	<param name="utype5" type="radio" default="1" label="MANAGER" description="">
+		<option value="1">OPTION_NO</option>
+		<option value="0">OPTION_YES</option>
+	</param>
+	<param name="utype6" type="radio" default="1" label="ADMINISTRATOR" description="">
+		<option value="1">OPTION_NO</option>
+		<option value="0">OPTION_YES</option>
+	</param>
+	<param name="utype7" type="radio" default="1" label="SUPER_ADMINISTRATOR" description="">
+		<option value="1">OPTION_NO</option>
+		<option value="0">OPTION_YES</option>
+	</param>
+</params>
+</install>

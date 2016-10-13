@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.2" type="plugin" group="system" method="upgrade">
+<name>System - AntiCopy</name>
+<author>Galaa</author>
+<creationDate>2011-05-17</creationDate>
+<copyright>Copyright (C) 2011-2016 Galaa</copyright>
+<license>This extension in released under the GNU/GPL License - http://www.gnu.org/copyleft/gpl.html</license>
+<authorUrl>http://galaa.mn</authorUrl>
+<version>2.0.0</version>
+<description>This plugin restricts framing whole site, printing web page, and copying site contents by disabling the right click, drag and copy functions. Copyright (C) 2011-2016 Galaa (http://galaa.mn/)</description>
+<files>
+	<filename plugin="anticopy">anticopy.php</filename>
+	<filename>index.html</filename>
+</files>
+<languages folder="language">
+	<language tag="en-GB">en-GB/en-GB.plg_system_anticopy.ini</language>
+</languages>
+<config>
+	<fields name="params">
+	<fieldset name="basic">
+		<field name="disallow_framing" type="list" default="1" label="JEXTBOX_ANTICOPY_FRAMING_LABEL" description="JEXTBOX_ANTICOPY_FRAMING_DESC">
+			<option value="0">JEXTBOX_ANTICOPY_OPTION_ALLOW</option>
+			<option value="1">JEXTBOX_ANTICOPY_OPTION_DISALLOW</option>
+		</field>
+		<field name="restrict_groups" type="usergrouplist" multiple="true" label="JEXTBOX_ANTICOPY_USER_GROUP_LABEL" description="JEXTBOX_ANTICOPY_USER_GROUP_DESC" />
+		<field name="disallow_print" type="list" default="1" label="JEXTBOX_ANTICOPY_PRINT_LABEL" description="JEXTBOX_ANTICOPY_PRINT_DESC">
+			<option value="0">JEXTBOX_ANTICOPY_OPTION_ALLOW</option>
+			<option value="1">JEXTBOX_ANTICOPY_OPTION_DISALLOW</option>
+		</field>
+		<field name="disallow_printscreen" type="list" default="0" label="JEXTBOX_ANTICOPY_PRINT_SCREEN_LABEL" description="JEXTBOX_ANTICOPY_PRINT_SCREEN_DESC">
+			<option value="0">JEXTBOX_ANTICOPY_OPTION_ALLOW</option>
+			<option value="1">JEXTBOX_ANTICOPY_OPTION_TRY_TO_DISABLE</option>
+		</field>
+		<field name="disallow_r_click" type="list" default="1" label="JEXTBOX_ANTICOPY_RIGHT_CLICK_LABEL" description="JEXTBOX_ANTICOPY_RIGHT_CLICK_DESC">
+			<option value="0">JEXTBOX_ANTICOPY_OPTION_ALLOW</option>
+			<option value="1">JEXTBOX_ANTICOPY_OPTION_DISALLOW</option>
+			<option value="2">JEXTBOX_ANTICOPY_OPTION_DISALLOW_FOR_IMAGES</option>
+		</field>
+		<field name="disallow_copy" type="list" default="1" label="JEXTBOX_ANTICOPY_DRAG_COPY_LABEL" description="JEXTBOX_ANTICOPY_DRAG_COPY_DESC">
+			<option value="0">JEXTBOX_ANTICOPY_OPTION_ALLOW</option>
+			<option value="1">JEXTBOX_ANTICOPY_OPTION_DISALLOW</option>
+		</field>
+		<field name="show_message" type="list" default="0" label="JEXTBOX_ANTICOPY_SHOW_MSG_LABEL" description="JEXTBOX_ANTICOPY_SHOW_MSG_DESC">
+			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+		</field>
+		<field name="message" type="text" size="50" default="Stop copying the copyrighted material!" label="JEXTBOX_ANTICOPY_MSG_LABEL" description="JEXTBOX_ANTICOPY_MSG_DESC" />
+	</fieldset>
+	</fields>
+</config>
+</extension>

@@ -15,6 +15,9 @@
 <languages folder="language">
 	<language tag="en-GB">en-GB/en-GB.plg_system_anticopy.ini</language>
 </languages>
+<updateservers>
+	<server type="extension" priority="2" name="Anticopy - Updates">http://jextbox.com/updates/anticopy.xml</server>
+</updateservers>
 <config>
 	<fields name="params">
 	<fieldset name="basic">

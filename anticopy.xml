@@ -3,11 +3,11 @@
 <name>System - AntiCopy</name>
 <author>Galaa</author>
 <creationDate>2011-05-17</creationDate>
-<copyright>Copyright (C) 2011-2016 Galaa</copyright>
+<copyright>Copyright (C) 2011-2021 Galaa</copyright>
 <license>This extension in released under the GNU/GPL License - http://www.gnu.org/copyleft/gpl.html</license>
-<authorUrl>http://galaa.mn</authorUrl>
-<version>2.0.0</version>
-<description>This plugin restricts framing whole site, printing web page, and copying site contents by disabling the right click, drag and copy functions. Copyright (C) 2011-2016 Galaa (http://galaa.mn/)</description>
+<authorUrl>www.galaa.mn</authorUrl>
+<version>2.0.1</version>
+<description>This plugin restricts framing and printing of web pages and copying of contents by disabling the right click, drag and copy functions. Copyright (C) 2011-2021 Galaa (www.galaa.mn)</description>
 <files>
 	<filename plugin="anticopy">anticopy.php</filename>
 	<filename>index.html</filename>
@@ -16,7 +16,7 @@
 	<language tag="en-GB">en-GB/en-GB.plg_system_anticopy.ini</language>
 </languages>
 <updateservers>
-	<server type="extension" priority="2" name="Anticopy - Updates">https://github.com/galaamn/jextbox-update-manifests/releases/download/manifests/anticopy-update-manifest.xml</server>
+	<server type="extension" priority="1" name="Anticopy - Updates">http://jextbox.com/update/anticopy.xml</server>
 </updateservers>
 <config>
 	<fields name="params">

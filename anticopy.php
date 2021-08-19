@@ -5,7 +5,7 @@
 * @author        Galaa
 * @publisher     JExtBOX - BOX of Joomla Extensions (www.jextbox.com)
 * @authorUrl     www.galaa.mn
-* @copyright     Copyright (C) 2011-2016 Galaa
+* @copyright     Copyright (C) 2011-2021 Galaa
 * @license       This extension in released under the GNU/GPL License - http://www.gnu.org/copyleft/gpl.html
 */
 
@@ -21,10 +21,11 @@ class plgSystemAntiCopy extends JPlugin {
 
 		// Backend
 		$app = JFactory::getApplication();
-		if($app->isAdmin()) return;
+		if ($app->isClient('administrator'))
+			return;
 
 		// Prepare Script
-		$html = JResponse::getBody();
+		$html = JFactory::getApplication()->getBody();
 
 		// Check User
 		$user = JFactory::getUser();
@@ -145,7 +146,7 @@ document.addEventListener('copy', function(e){
 		} // Restrict the framing
 
 		// Response
-		JResponse::setBody($html);
+		JFactory::getApplication()->setBody($html);
 		return true;
 
 	} // onAfterRender

@@ -1,3 +1,7 @@
+# 3.1.1
+
+The code which makes HTML source code hard to read, completely rewritten due to several serious problems.
+
 # 3.1.0
 
 For the message on copy or cut, replaced the js alert by the modal.

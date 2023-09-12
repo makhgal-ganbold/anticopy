@@ -5,9 +5,9 @@
 <creationDate>2011-05-17</creationDate>
 <copyright>Copyright (C) 2011-2021 Galaa</copyright>
 <license>This extension in released under the GNU/GPL License - http://www.gnu.org/copyleft/gpl.html</license>
-<authorUrl>www.galaa.mn</authorUrl>
-<version>3.1.1</version>
-<description>This plugin restricts framing and printing of web pages and copying of contents by disabling the right click, drag and copy functions. Also additional advanced AntiCopy protections are available in the paid full version of this plugin.</description>
+<authorUrl>www.galaa.net</authorUrl>
+<version>4.2.0</version>
+<description>This plugin helps to protect your copyrighted content from being copied without permission.</description>
 <files>
 	<filename plugin="anticopy">anticopy.php</filename>
 	<filename>index.html</filename>
@@ -15,90 +15,101 @@
 <languages folder="language">
 	<language tag="en-GB">en-GB/en-GB.plg_system_anticopy.ini</language>
 </languages>
-<updateservers>
-	<server type="extension" priority="1" name="Anticopy - Updates">https://jextbox.com/update/anticopy.xml</server>
-</updateservers>
 <config>
 	<fields name="params">
-	<fieldset name="basic">
-		<field name="free" type="note" class="alert alert-info" label="JEXTBOX_ANTICOPY_NOTIFICATION_FREE_LBL" description="JEXTBOX_ANTICOPY_NOTIFICATION_FREE_DSC" />
-		<field name="disallow_framing" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_FRAMING">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field type="spacer" name="spacer1" label="&lt;hr/&gt;" />
-		<field type="spacer" name="spacer2" label="JEXTBOX_ANTICOPY_USER_GROUP_SPECIFIC_OPTIONS" description="JEXTBOX_ANTICOPY_USER_GROUP_BEHAVIOUR"/>
-		<field type="spacer" name="spacer3" label="&lt;hr/&gt;" />
-		<field name="restrict_groups" type="usergrouplist" multiple="true" label="JEXTBOX_ANTICOPY_USER_GROUP"/>
-		<field name="disallow_r_click" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_RIGHT_CLICK">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="2">JEXTBOX_ANTICOPY_OPTION_IMAGES_ONLY</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="disallow_print" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_PRINT">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="sanitize_html" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_SANITIZE_HTML">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="disallow_drag" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DRAG">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="disallow_copy" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_COPY">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="show_message" type="radio" class="btn-group btn-group-yesno" default="0" showon="disallow_copy:1" label="JEXTBOX_ANTICOPY_SHOW_MSG">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="message" type="text" default="Stop copying the copyrighted material!" showon="disallow_copy:1[AND]show_message:1" label="JEXTBOX_ANTICOPY_MSG"/>
-		<field name="full" type="note" class="alert alert-info" label="JEXTBOX_ANTICOPY_NOTIFICATION_FULL_LBL" description="JEXTBOX_ANTICOPY_NOTIFICATION_FULL_DSC" />
-		<field name="encode_html" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_ENCODE_HTML" disabled="true">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="dont_encode_if_bot" type="radio" class="btn-group btn-group-yesno" default="1" showon="encode_html:1" label="JEXTBOX_ANTICOPY_DONT_ENCODE_IF_BOT" disabled="true">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="custom_bots" type="text" default="" showon="encode_html:1[AND]dont_encode_if_bot:1" label="JEXTBOX_ANTICOPY_CUSTOM_BOTS" description="JEXTBOX_ANTICOPY_CUSTOM_BOTS_DSC" disabled="true"/>
-		<field name="use_default_bots" type="radio" class="btn-group btn-group-yesno" default="1" showon="encode_html:1[AND]dont_encode_if_bot:1" label="JEXTBOX_ANTICOPY_USE_DEFAULT_BOTS" disabled="true">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="detect_nojs" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DETECT_NOJS" disabled="true">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="js_alert" type="text" default="For full functionality of this site it is necessary to enable JavaScript. Here are the &#x3C;a href=&#x22;https://www.enablejavascript.io/&#x22;&#x3E;instructions how to enable JavaScript in your web browser&#x3C;/a&#x3E;." filter="raw" showon="detect_nojs:1[OR]encode_html:1" label="JEXTBOX_ANTICOPY_JS_ALERT" disabled="true"/>
-		<field type="spacer" name="spacer4" label="&lt;hr/&gt;" />
-		<field type="spacer" name="spacer5" label="JEXTBOX_ANTICOPY_SHORTCUTS" description="JEXTBOX_ANTICOPY_SHORTCUTS_DSC"/>
-		<field type="spacer" name="spacer6" label="&lt;hr/&gt;" />
-		<field name="prevent_viewsource" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_VIEW_SOURCE" disabled="true">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="prevent_save" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_SAVE" disabled="true">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="prevent_inspect" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_INSPECT" disabled="true">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="prevent_devtools" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_DEVTOOLS" disabled="true">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-		<field name="prevent_print" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_PRINT" disabled="true">
-			<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
-			<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
-		</field>
-	</fieldset>
+		<fieldset name="basic">
+			<field name="free" type="note" class="alert alert-info" label="JEXTBOX_ANTICOPY_NOTIFICATION_FREE_LBL" description="JEXTBOX_ANTICOPY_NOTIFICATION_FREE_DSC" />
+			<field name="disallow_framing" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_FRAMING">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field type="spacer" name="spacer1" label="&lt;hr/&gt;" />
+			<field type="spacer" name="spacer2" label="JEXTBOX_ANTICOPY_USER_GROUP_SPECIFIC_OPTIONS" description="JEXTBOX_ANTICOPY_USER_GROUP_BEHAVIOUR"/>
+			<field type="spacer" name="spacer3" label="&lt;hr/&gt;" />
+			<field name="restrict_groups" type="usergrouplist" multiple="true" label="JEXTBOX_ANTICOPY_USER_GROUP"/>
+			<field name="excluded_urls" type="textarea" rows="5" label="JEXTBOX_ANTICOPY_EXCLUDED_URLS"/>
+			<field name="disallow_r_click" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_RIGHT_CLICK">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="2">JEXTBOX_ANTICOPY_OPTION_IMAGES_ONLY</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="disallow_print" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_PRINT">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="sanitize_html" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_SANITIZE_HTML">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="disallow_drag" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DRAG">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="disallow_copy" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_COPY">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="show_message" type="radio" class="btn-group btn-group-yesno" default="0" showon="disallow_copy:1" label="JEXTBOX_ANTICOPY_SHOW_MSG">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="message" type="text" default="Stop copying the copyrighted material!" showon="disallow_copy:1[AND]show_message:1" label="JEXTBOX_ANTICOPY_MSG"/>
+			<field name="full" type="note" class="alert alert-info" label="JEXTBOX_ANTICOPY_NOTIFICATION_FULL_LBL" description="JEXTBOX_ANTICOPY_NOTIFICATION_FULL_DSC" />
+			<field name="note_protect_html" type="note" class="alert alert-warning" label="JEXTBOX_ANTICOPY_ALERT_FOR_PROTECT_HTML" description="JEXTBOX_ANTICOPY_ALERT_FOR_PROTECT_HTML_DSC"/>
+			<field name="protect_html" type="list" default="0" label="JEXTBOX_ANTICOPY_PROTECT_HTML" disabled="true">
+				<option value="2">JEXTBOX_ANTICOPY_PROTECT_HTML_OPTION_AJAX</option>
+				<option value="1">JEXTBOX_ANTICOPY_PROTECT_HTML_OPTION_ENCODE</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="dont_protect_if_bot" type="radio" class="btn-group btn-group-yesno" default="1" showon="protect_html!:0" label="JEXTBOX_ANTICOPY_DONT_PROTECT_IF_BOT" disabled="true">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="custom_bots" type="text" default="" showon="protect_html!:0[AND]dont_protect_if_bot:1" label="JEXTBOX_ANTICOPY_CUSTOM_BOTS" description="JEXTBOX_ANTICOPY_CUSTOM_BOTS_DSC" disabled="true"/>
+			<field name="use_default_bots" type="radio" class="btn-group btn-group-yesno" default="1" showon="protect_html!:0[AND]dont_protect_if_bot:1" label="JEXTBOX_ANTICOPY_USE_DEFAULT_BOTS" disabled="true">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="detect_nojs" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DETECT_NOJS" disabled="true">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="js_alert" type="text" default="For full functionality of this site it is necessary to enable JavaScript. Here are the &#x3C;a href=&#x22;https://www.enablejavascript.io/&#x22;&#x3E;instructions how to enable JavaScript in your web browser&#x3C;/a&#x3E;." filter="raw" showon="detect_nojs:1[OR]protect_html!:0" label="JEXTBOX_ANTICOPY_JS_ALERT" disabled="true"/>
+			<field name="note_detect_devtools" type="note" class="alert alert-warning" label="JEXTBOX_ANTICOPY_ALERT_FOR_DETECT_DEVTOOLS" description="JEXTBOX_ANTICOPY_ALERT_FOR_DETECT_DEVTOOLS_DSC"/>
+			<field name="detect_devtools" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DETECT_DEVTOOLS" disabled="true">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="devtools_detection_parameter_value" type="number" default="160" min="0" showon="detect_devtools:1" label="JEXTBOX_ANTICOPY_DEVTOOLS_PARAMETER_VALUE" disabled="true"/>
+			<field name="devtools_detection_parameter_type" type="list" default="pixels" showon="detect_devtools:1" label="JEXTBOX_ANTICOPY_DEVTOOLS_PARAMETER_TYPE" disabled="true">
+				<option value="pixels">JEXTBOX_ANTICOPY_DEVTOOLS_PARAMETER_OPTION_PIXELS</option>
+				<option value="percent">JEXTBOX_ANTICOPY_DEVTOOLS_PARAMETER_OPTION_PERCENT</option>
+			</field>
+			<field name="devtools_alert" type="text" default="Close the devtools to see the web page." showon="detect_devtools:1" label="JEXTBOX_ANTICOPY_DEVTOOLS_ALERT" disabled="true"/>
+			<field type="spacer" name="spacer4" label="&lt;hr/&gt;" />
+			<field type="spacer" name="spacer5" label="JEXTBOX_ANTICOPY_SHORTCUTS" description="JEXTBOX_ANTICOPY_SHORTCUTS_DSC"/>
+			<field type="spacer" name="spacer6" label="&lt;hr/&gt;" />
+			<field name="prevent_viewsource" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_VIEW_SOURCE" disabled="true">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="prevent_save" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_SAVE" disabled="true">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="prevent_inspect" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_INSPECT" disabled="true">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="prevent_devtools" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_DEVTOOLS" disabled="true">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+			<field name="prevent_print" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_PRINT" disabled="true">
+				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
+				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
+			</field>
+		</fieldset>
 	</fields>
 </config>
 </extension>

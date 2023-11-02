@@ -6,4 +6,4 @@ This plugin restricts the framing and printing of web pages and copying of conte
 
 > Project home page: [www.jextbox.com](https://jextbox.com/)
 
-Copyright (C) 2011-2021 [Galaa](https://www.galaa.net)
+Copyright (C) 2011-2023 [Galaa](https://www.galaa.net)

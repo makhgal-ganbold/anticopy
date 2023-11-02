@@ -3,10 +3,10 @@
 <name>System - AntiCopy</name>
 <author>Galaa</author>
 <creationDate>2011-05-17</creationDate>
-<copyright>Copyright (C) 2011-2021 Galaa</copyright>
+<copyright>Copyright (C) 2011-2023 Galaa</copyright>
 <license>This extension in released under the GNU/GPL License - http://www.gnu.org/copyleft/gpl.html</license>
 <authorUrl>www.galaa.net</authorUrl>
-<version>4.2.0</version>
+<version>4.3.0</version>
 <description>This plugin helps to protect your copyrighted content from being copied without permission.</description>
 <files>
 	<filename plugin="anticopy">anticopy.php</filename>

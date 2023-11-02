@@ -5,17 +5,14 @@
 * @author        Galaa
 * @publisher     JExtBOX - BOX of Joomla Extensions (www.jextbox.com)
 * @authorUrl     www.galaa.net
-* @copyright     Copyright (C) 2011-2021 Galaa
+* @copyright     Copyright (C) 2011-2023 Galaa
 * @license       This extension in released under the GNU/GPL License - http://www.gnu.org/copyleft/gpl.html
 */
 
 // no direct access
 defined('_JEXEC') or die;
 
-// Import library dependencies
-jimport( 'joomla.plugin.plugin' );
-
-class plgSystemAntiCopy extends JPlugin {
+class plgSystemAntiCopy extends Joomla\CMS\Plugin\CMSPlugin {
 
 	private $skip = false;
 
@@ -33,7 +30,7 @@ class plgSystemAntiCopy extends JPlugin {
 		parent::__construct($subject, $config);
 
 		// Skip backend
-		if (JFactory::getApplication()->isClient('administrator')) {
+		if (Joomla\CMS\Factory::getApplication()->isClient('administrator')) {
 			$this->skip = true;
 			return;
 		}
@@ -45,7 +42,7 @@ class plgSystemAntiCopy extends JPlugin {
 		}
 
 		// Define a current user's groups
-		$user_groups = JFactory::getUser()->getAuthorisedGroups();
+		$user_groups = version_compare(JVERSION, '5.0.0', '<') ? Joomla\CMS\Factory::getUser()->getAuthorisedGroups() : Joomla\CMS\Factory::getApplication()->getIdentity()->getAuthorisedGroups();
 		// Restricted groups
 		$restricted_groups = $this->params->get('restrict_groups', array());
 		settype($restricted_groups, 'array');
@@ -86,7 +83,7 @@ class plgSystemAntiCopy extends JPlugin {
 	function onBeforeCompileHead() {
 
 		// Get document
-		$doc = JFactory::getDocument();
+		$doc = Joomla\CMS\Factory::getDocument();
 
 		// Prevent framing
 		if ($this->params->get('disallow_framing', 1))
@@ -181,7 +178,7 @@ class plgSystemAntiCopy extends JPlugin {
 		}
 
 		// Get HTML
-		$html = JFactory::getApplication()->getBody();
+		$html = Joomla\CMS\Factory::getApplication()->getBody();
 
 		// Disable right click for images
 		if ($this->params->get('disallow_r_click', 1) == 2) {
@@ -217,7 +214,7 @@ class plgSystemAntiCopy extends JPlugin {
 		}
 
 		// Set HTML
-		JFactory::getApplication()->setBody($html);
+		Joomla\CMS\Factory::getApplication()->setBody($html);
 
 	}
 

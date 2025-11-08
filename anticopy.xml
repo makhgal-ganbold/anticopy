@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.2" type="plugin" group="system" method="upgrade">
+<extension type="plugin" group="system" method="upgrade" version="5.0">
 <name>System - AntiCopy</name>
-<author>Galaa</author>
-<creationDate>2011-05-17</creationDate>
-<copyright>Copyright (C) 2011-2023 Galaa</copyright>
+<author>Makgal Ganbold</author>
+<creationDate>2025-11-02</creationDate>
+<copyright>Copyright (C) 2011-2025 Galaa</copyright>
 <license>This extension in released under the GNU/GPL License - http://www.gnu.org/copyleft/gpl.html</license>
-<authorUrl>www.galaa.net</authorUrl>
-<version>4.3.0</version>
+<authorUrl>https://www.galaa.net</authorUrl>
+<version>5.0.0</version>
 <description>This plugin helps to protect your copyrighted content from being copied without permission.</description>
+
 <files>
 	<filename plugin="anticopy">anticopy.php</filename>
 	<filename>index.html</filename>
 </files>
-<languages folder="language">
-	<language tag="en-GB">en-GB/en-GB.plg_system_anticopy.ini</language>
+
+<languages>
+	<language tag="en-GB">language/en-GB/en-GB.plg_system_anticopy.ini</language>
 </languages>
+
 <config>
 	<fields name="params">
 		<fieldset name="basic">
@@ -53,59 +56,58 @@
 				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
 				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
 			</field>
-			<field name="message" type="text" default="Stop copying the copyrighted material!" showon="disallow_copy:1[AND]show_message:1" label="JEXTBOX_ANTICOPY_MSG"/>
+			<field name="message" type="text" default="You don't have permission to copy the content." showon="disallow_copy:1[AND]show_message:1" label="JEXTBOX_ANTICOPY_MSG"/>
 			<field name="full" type="note" class="alert alert-info" label="JEXTBOX_ANTICOPY_NOTIFICATION_FULL_LBL" description="JEXTBOX_ANTICOPY_NOTIFICATION_FULL_DSC" />
 			<field name="note_protect_html" type="note" class="alert alert-warning" label="JEXTBOX_ANTICOPY_ALERT_FOR_PROTECT_HTML" description="JEXTBOX_ANTICOPY_ALERT_FOR_PROTECT_HTML_DSC"/>
-			<field name="protect_html" type="list" default="0" label="JEXTBOX_ANTICOPY_PROTECT_HTML" disabled="true">
+			<field name="protect_html" type="list" default="0" label="JEXTBOX_ANTICOPY_PROTECT_HTML" readonly="true">
 				<option value="2">JEXTBOX_ANTICOPY_PROTECT_HTML_OPTION_AJAX</option>
 				<option value="1">JEXTBOX_ANTICOPY_PROTECT_HTML_OPTION_ENCODE</option>
 				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
 			</field>
-			<field name="dont_protect_if_bot" type="radio" class="btn-group btn-group-yesno" default="1" showon="protect_html!:0" label="JEXTBOX_ANTICOPY_DONT_PROTECT_IF_BOT" disabled="true">
+			<field name="dont_protect_if_bot" type="radio" class="btn-group btn-group-yesno" default="1" showon="protect_html!:0" label="JEXTBOX_ANTICOPY_DONT_PROTECT_IF_BOT" readonly="true">
 				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
 				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
 			</field>
-			<field name="custom_bots" type="text" default="" showon="protect_html!:0[AND]dont_protect_if_bot:1" label="JEXTBOX_ANTICOPY_CUSTOM_BOTS" description="JEXTBOX_ANTICOPY_CUSTOM_BOTS_DSC" disabled="true"/>
-			<field name="use_default_bots" type="radio" class="btn-group btn-group-yesno" default="1" showon="protect_html!:0[AND]dont_protect_if_bot:1" label="JEXTBOX_ANTICOPY_USE_DEFAULT_BOTS" disabled="true">
+			<field name="custom_bots" type="text" default="" showon="protect_html!:0[AND]dont_protect_if_bot:1" label="JEXTBOX_ANTICOPY_CUSTOM_BOTS" description="JEXTBOX_ANTICOPY_CUSTOM_BOTS_DSC" readonly="true"/>
+			<field name="use_default_bots" type="radio" class="btn-group btn-group-yesno" default="1" showon="protect_html!:0[AND]dont_protect_if_bot:1" label="JEXTBOX_ANTICOPY_USE_DEFAULT_BOTS" readonly="true">
 				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
 				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
 			</field>
-			<field name="detect_nojs" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DETECT_NOJS" disabled="true">
+			<field name="hide_body_if_nojs" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_HIDE_BODY_IF_NOJS" readonly="true">
 				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
 				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
 			</field>
-			<field name="js_alert" type="text" default="For full functionality of this site it is necessary to enable JavaScript. Here are the &#x3C;a href=&#x22;https://www.enablejavascript.io/&#x22;&#x3E;instructions how to enable JavaScript in your web browser&#x3C;/a&#x3E;." filter="raw" showon="detect_nojs:1[OR]protect_html!:0" label="JEXTBOX_ANTICOPY_JS_ALERT" disabled="true"/>
 			<field name="note_detect_devtools" type="note" class="alert alert-warning" label="JEXTBOX_ANTICOPY_ALERT_FOR_DETECT_DEVTOOLS" description="JEXTBOX_ANTICOPY_ALERT_FOR_DETECT_DEVTOOLS_DSC"/>
-			<field name="detect_devtools" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DETECT_DEVTOOLS" disabled="true">
+			<field name="detect_devtools" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DETECT_DEVTOOLS" readonly="true">
 				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
 				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
 			</field>
-			<field name="devtools_detection_parameter_value" type="number" default="160" min="0" showon="detect_devtools:1" label="JEXTBOX_ANTICOPY_DEVTOOLS_PARAMETER_VALUE" disabled="true"/>
-			<field name="devtools_detection_parameter_type" type="list" default="pixels" showon="detect_devtools:1" label="JEXTBOX_ANTICOPY_DEVTOOLS_PARAMETER_TYPE" disabled="true">
+			<field name="devtools_detection_parameter_value" type="number" default="160" min="0" showon="detect_devtools:1" label="JEXTBOX_ANTICOPY_DEVTOOLS_PARAMETER_VALUE" readonly="true"/>
+			<field name="devtools_detection_parameter_type" type="list" default="pixels" showon="detect_devtools:1" label="JEXTBOX_ANTICOPY_DEVTOOLS_PARAMETER_TYPE" readonly="true">
 				<option value="pixels">JEXTBOX_ANTICOPY_DEVTOOLS_PARAMETER_OPTION_PIXELS</option>
 				<option value="percent">JEXTBOX_ANTICOPY_DEVTOOLS_PARAMETER_OPTION_PERCENT</option>
 			</field>
-			<field name="devtools_alert" type="text" default="Close the devtools to see the web page." showon="detect_devtools:1" label="JEXTBOX_ANTICOPY_DEVTOOLS_ALERT" disabled="true"/>
+			<field name="devtools_alert" type="text" default="Devtools is probably open. Please close it. If it's not open, please close the open sidebar, bookmarks bar, and other expanded bars or contact the web administrator." showon="detect_devtools:1" label="JEXTBOX_ANTICOPY_DEVTOOLS_ALERT" readonly="true"/>
 			<field type="spacer" name="spacer4" label="&lt;hr/&gt;" />
 			<field type="spacer" name="spacer5" label="JEXTBOX_ANTICOPY_SHORTCUTS" description="JEXTBOX_ANTICOPY_SHORTCUTS_DSC"/>
 			<field type="spacer" name="spacer6" label="&lt;hr/&gt;" />
-			<field name="prevent_viewsource" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_VIEW_SOURCE" disabled="true">
+			<field name="prevent_viewsource" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_VIEW_SOURCE" readonly="true">
 				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
 				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
 			</field>
-			<field name="prevent_save" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_SAVE" disabled="true">
+			<field name="prevent_save" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_SAVE" readonly="true">
 				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
 				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
 			</field>
-			<field name="prevent_inspect" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_INSPECT" disabled="true">
+			<field name="prevent_inspect" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_INSPECT" readonly="true">
 				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
 				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
 			</field>
-			<field name="prevent_devtools" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_DEVTOOLS" disabled="true">
+			<field name="prevent_devtools" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_DEVTOOLS" readonly="true">
 				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
 				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
 			</field>
-			<field name="prevent_print" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_PRINT" disabled="true">
+			<field name="prevent_print" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_DISABLE_PRINT" readonly="true">
 				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
 				<option value="0">JEXTBOX_ANTICOPY_OPTION_NO</option>
 			</field>

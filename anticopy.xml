@@ -30,7 +30,8 @@
 			<field type="spacer" name="spacer2" label="JEXTBOX_ANTICOPY_USER_GROUP_SPECIFIC_OPTIONS" description="JEXTBOX_ANTICOPY_USER_GROUP_BEHAVIOUR"/>
 			<field type="spacer" name="spacer3" label="&lt;hr/&gt;" />
 			<field name="restrict_groups" type="usergrouplist" multiple="true" label="JEXTBOX_ANTICOPY_USER_GROUP"/>
-			<field name="excluded_urls" type="textarea" rows="5" label="JEXTBOX_ANTICOPY_EXCLUDED_URLS"/>
+			<field name="excluded_urls" type="textarea" rows="5" label="JEXTBOX_ANTICOPY_EXCLUDED_PAGES"/>
+			<field name="excluded_urls_desc" type="note" description="JEXTBOX_ANTICOPY_EXCLUDED_PAGES_DESC"/>
 			<field name="disallow_r_click" type="radio" class="btn-group btn-group-yesno" default="1" label="JEXTBOX_ANTICOPY_RIGHT_CLICK">
 				<option value="1">JEXTBOX_ANTICOPY_OPTION_YES</option>
 				<option value="2">JEXTBOX_ANTICOPY_OPTION_IMAGES_ONLY</option>

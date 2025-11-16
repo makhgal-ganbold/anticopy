@@ -66,18 +66,117 @@ class PlgSystemAntiCopy extends CMSPlugin
 			return;
 		}
 
-		// Excluded URLs
-		$excludedUrls = array_filter(array_map('trim', explode(PHP_EOL, strtolower($this->params->get('excluded_urls', '')))));
+		/* * * * * * * * * * * * * * * * * * * * *
+		 * Exclude specific pages by URL matching
+		 * * * * * * * * * * * * * * * * * * * * */
 
-		// Check URL exclusion with exact and wildcard pattern matching
-		$current_url = strtolower(Uri::getInstance()->toString());
-		if (!empty($current_url)) {
-			foreach ($excludedUrls as $excludedUrl) {
-				if (empty($excludedUrl)) {
-					continue;
+		// Load excluded URL patterns
+		$raw_excluded_urls = strtolower($this->params->get('excluded_urls', ''));
+		$lines = preg_split('/\r\n|\r|\n/', $raw_excluded_urls);
+		$excluded_urls = array_filter(array_map('trim', $lines));
+
+		// Parse current URL
+		$uri = Uri::getInstance();
+		// Base folder (Joomla site folder)
+		$basePath = strtolower(rtrim($uri->base(true), '/'));
+		// Normalize basePath: ensure it starts with "/" (but no trailing "/")
+		$basePath = $basePath === '' ? '' : '/' . trim($basePath, '/');
+		// Full request path
+		$fullPath = strtolower($uri->getPath());
+		// Remove Joomla's index.php
+		$fullPath = preg_replace('#/index\.php(/|$)#', '/', $fullPath);
+		// Normalize path
+		$fullPath = '/' . trim($fullPath, '/');
+		// If fullPath starts with basePath, remove the basePath portion
+		if ($basePath !== '' && str_starts_with($fullPath, $basePath)) {
+			$pathAfterBase = substr($fullPath, strlen($basePath));
+		} else {
+			// Either base is empty (site at domain root) or fullPath doesn't contain base (edge-case)
+			$pathAfterBase = $fullPath;
+		}
+		// Normalize resulting path (remove leading/trailing slashes)
+		$current_path = trim($pathAfterBase, '/');
+		// Treat homepage as single slash "/"
+		if ($current_path === '') {
+			$current_path = '/';
+		}
+		// Query string
+		$current_query = strtolower($uri->getQuery());
+
+		// Parse current query string into associative array (for flexible matching)
+		parse_str($current_query, $current_query_arr);
+
+		// Convert wildcard pattern into valid regex
+		$makeRegex = function($pattern) {
+			$pattern = trim($pattern);
+			$pattern = rtrim($pattern, '/');
+			$escaped = preg_quote($pattern, '/');
+			$regex = str_replace('\*', '.*', $escaped);
+			return '/^' . $regex . '$/i';
+		};
+
+		// Match a rule query string against the current query (order-independent)
+		$matchQuery = function($rule_query, $current_query_arr, $makeRegex) {
+			$pairs = explode('&', $rule_query);
+			foreach ($pairs as $pair) {
+				if ($pair === '') continue;
+				$kv = explode('=', $pair, 2);
+				$key = $kv[0];
+				if (!array_key_exists($key, $current_query_arr)) {
+					return false;
 				}
-				$pattern = '/^' . str_replace('\*', '.*', preg_quote($excludedUrl, '/')) . '$/i';
-				if ($currentUrl === $excludedUrl || preg_match($pattern, $currentUrl)) {
+				$currentValue = $current_query_arr[$key];
+				$ruleValue = $kv[1] ?? ''; // empty value allowed
+				if (!preg_match($makeRegex($ruleValue), $currentValue)) {
+					return false;
+				}
+			}
+			return true;
+		};
+
+		// Search Engine Friendly URLs
+		$config = Factory::getConfig();
+		$isSEFEnabled = (bool) $config->get('sef');
+
+		// Check all excluded patterns
+		foreach ($excluded_urls as $rule) {
+			if ($rule === '') continue;
+			$has_query = strpos($rule, '?') !== false;
+			if ($has_query) {
+				list($rule_path, $rule_query) = explode('?', $rule, 2);
+				if ($isSEFEnabled) {
+					$rule_path = trim($rule_path);
+					$rule_path = trim($rule_path, '/');
+					if ($rule_path === '') {
+						$rule_path = '/';
+					}
+					$rule_query = trim($rule_query);
+					// Match path
+					if ($rule_path !== '/') {
+						if ($rule_path !== $current_path && !preg_match($makeRegex($rule_path), $current_path)) {
+							continue;
+						}
+					}
+				}
+				// Match query (order-insensitive)
+				if ($rule_query !== '') {
+					if (!$matchQuery($rule_query, $current_query_arr, $makeRegex)) {
+						continue;
+					}
+				}
+				// Matched
+				$this->skip = true;
+				return;
+			} else {
+				$rule_path = trim($rule);
+				$rule_path = trim($rule_path, '/');
+				if ($rule_path === '') {
+					if (!$isSEFEnabled && $current_query !== '') {
+						continue;
+					}
+					$rule_path = '/';
+				}
+				if ($rule_path === $current_path || preg_match($makeRegex($rule_path), $current_path)) {
 					$this->skip = true;
 					return;
 				}

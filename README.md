@@ -6,4 +6,4 @@ This plugin helps to protect your copyrighted content from being copied without 
 
 > Project home page: [www.jextbox.com](https://jextbox.com/)
 
-Copyright (C) 2011-2025 [Makhgal Ganbold](https://www.galaa.net)
+Copyright (C) 2011-2026 [Makhgal Ganbold](https://www.galaa.net)
